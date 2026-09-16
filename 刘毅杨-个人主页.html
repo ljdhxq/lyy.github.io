@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>刘毅杨 · 个人主页 | 黑客松 · AI 游戏与交互世界</title>
+<meta name="description" content="刘毅杨，软件工程大三学生，Python 后端方向，第一次参加黑客松，赛道 AI 游戏与交互世界。" />
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource-variable/manrope@5.2.8/index.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource-variable/noto-sans-sc@5.2.10/index.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/ibm-plex-mono@5.2.7/400.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/ibm-plex-mono@5.2.7/500.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/ibm-plex-mono@5.2.7/600.css" />
+<style>
+  :root {
+    --field: #f7f8fa;
+    --surface: #ffffff;
+    --ink: #0e1116;
+    --ink-soft: #40474f;
+    --muted: #8a929c;
+    --line: #e5e7eb;
+    --line-strong: #d3d8de;
+    --accent: #2563eb;
+    --accent-deep: #1d4ed8;
+    --accent-soft: #e8f0fe;
+    --font-sans: "Manrope Variable", "Noto Sans SC Variable", "PingFang SC", "Microsoft YaHei", sans-serif;
+    --font-mono: "IBM Plex Mono", "SFMono-Regular", "Cascadia Code", Menlo, Consolas, monospace;
+    --radius: 10px;
+    --radius-sm: 6px;
+    --maxw: 1120px;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0; background: var(--field); color: var(--ink);
+    font-family: var(--font-sans); font-size: 16px; line-height: 1.65;
+    -webkit-font-smoothing: antialiased; font-synthesis: none;
+    line-break: strict; overflow-wrap: break-word;
+  }
+  a { color: inherit; text-decoration: none; }
+  h1, h2, h3 { margin: 0; font-weight: 700; line-height: 1.15; letter-spacing: -0.015em; text-wrap: balance; }
+  .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 28px; }
+
+  /* ---------- 顶部导航 ---------- */
+  header.nav {
+    position: sticky; top: 0; z-index: 50;
+    background: rgba(247, 248, 250, 0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--line);
+  }
+  .nav-inner { max-width: var(--maxw); margin: 0 auto; padding: 0 28px; height: 60px; display: flex; align-items: center; gap: 20px; }
+  .brand { display: flex; align-items: center; gap: 10px; font-family: var(--font-mono); font-size: 13px; font-weight: 600; white-space: nowrap; }
+  .brand .mark {
+    width: 24px; height: 24px; border-radius: 7px; background: var(--ink); color: var(--surface);
+    display: grid; place-items: center; font-family: var(--font-mono); font-size: 11px; font-weight: 600;
+  }
+  .nav-links { display: flex; gap: 2px; margin-left: auto; }
+  .nav-links a {
+    font-size: 13.5px; font-weight: 500; color: var(--muted); padding: 6px 12px; border-radius: 999px;
+    transition: color .15s ease, background .15s ease; white-space: nowrap;
+  }
+  .nav-links a:hover { color: var(--ink); background: var(--surface); }
+
+  /* ---------- Hero ---------- */
+  .hero { padding: 76px 0 60px; }
+  .hero .topline {
+    font-family: var(--font-mono); font-size: 12px; font-weight: 500; letter-spacing: 0.16em;
+    text-transform: uppercase; color: var(--accent); margin-bottom: 20px;
+  }
+  .hero h1 { font-size: clamp(46px, 8vw, 76px); letter-spacing: -0.035em; }
+  .hero h1 .dot { color: var(--accent); }
+  .hero .sub {
+    margin-top: 18px; font-size: clamp(15px, 2.2vw, 18px); font-weight: 500; color: var(--ink-soft);
+    display: flex; flex-wrap: wrap; gap: 6px 14px; align-items: center;
+  }
+  .hero .sub .sep { color: var(--line-strong); }
+  .hero .lede { margin: 22px 0 0; max-width: 46em; color: var(--ink-soft); font-size: 16px; line-height: 1.8; }
+  .hero .lede strong { color: var(--ink); font-weight: 600; }
+  .hero .lede em { font-style: normal; color: var(--accent); font-weight: 600; }
+
+  .facts {
+    margin-top: 34px; display: grid; grid-template-columns: repeat(3, minmax(0,1fr));
+    border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); overflow: hidden;
+  }
+  .fact { padding: 18px 22px; }
+  .fact + .fact { border-left: 1px solid var(--line); }
+  .fact .k { font-family: var(--font-mono); font-size: 11px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
+  .fact .v { margin-top: 6px; font-size: 16px; font-weight: 700; color: var(--ink); }
+  .fact .v.accent { color: var(--accent); }
+
+  /* ---------- 粘性章节标签双栏 ---------- */
+  section.sec {
+    padding: 52px 0; border-top: 1px solid var(--line);
+    display: grid; grid-template-columns: 200px minmax(0, 1fr); gap: 48px; align-items: start;
+  }
+  .sec .rail { position: sticky; top: 84px; }
+  .sec .rail .num { font-family: var(--font-mono); font-size: 12px; font-weight: 600; color: var(--accent); }
+  .sec .rail h2 { font-size: 22px; margin-top: 8px; }
+  .sec .rail .hint { margin-top: 8px; font-family: var(--font-mono); font-size: 11.5px; color: var(--muted); display: block; }
+  .sec .body { min-width: 0; }
+
+  /* 关于我 */
+  .body p { margin: 0; color: var(--ink-soft); font-size: 15.5px; max-width: 64ch; }
+  .body p + p { margin-top: 16px; }
+  .body p strong { color: var(--ink); font-weight: 600; }
+
+  /* 技术栈 */
+  .stack { display: grid; gap: 0; border-top: 1px solid var(--line); }
+  .stack-row {
+    display: grid; grid-template-columns: 170px minmax(0,1fr); gap: 18px;
+    padding: 15px 0; border-bottom: 1px solid var(--line); align-items: baseline;
+  }
+  .stack-row .k { font-family: var(--font-mono); font-size: 12px; font-weight: 500; color: var(--muted); }
+  .stack-row .v { font-size: 14.5px; font-weight: 500; color: var(--ink); }
+  .stack-row .v .hot { color: var(--accent); font-weight: 700; }
+  .stack-row .v .sep { color: var(--line-strong); margin: 0 8px; font-weight: 400; }
+
+  /* 项目 */
+  .projects { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 16px; }
+  .proj {
+    background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius);
+    padding: 22px; transition: border-color .15s ease, box-shadow .15s ease, transform .15s ease;
+  }
+  .proj:hover { border-color: var(--accent); box-shadow: 0 12px 30px -20px rgba(37,99,235,.5); transform: translateY(-2px); }
+  .proj .top { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+  .proj .idx { font-family: var(--font-mono); font-size: 12px; font-weight: 600; color: var(--muted); }
+  .proj .stack-tag { font-family: var(--font-mono); font-size: 11.5px; font-weight: 500; color: var(--accent); background: var(--accent-soft); padding: 3px 9px; border-radius: 999px; white-space: nowrap; }
+  .proj h3 { font-size: 17px; margin: 14px 0 8px; }
+  .proj p { margin: 0; color: var(--ink-soft); font-size: 14.3px; line-height: 1.7; }
+
+  /* 目标 */
+  .goals { display: grid; gap: 14px; }
+  .goal {
+    display: grid; grid-template-columns: 46px minmax(0,1fr); gap: 16px; align-items: start;
+    background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 20px 22px;
+    transition: border-color .15s ease;
+  }
+  .goal:hover { border-color: var(--accent); }
+  .goal .no { font-family: var(--font-mono); font-size: 20px; font-weight: 600; color: var(--line-strong); line-height: 1.3; }
+  .goal:hover .no { color: var(--accent); }
+  .goal p { margin: 0; color: var(--ink-soft); font-size: 14.8px; }
+  .goal p b { color: var(--ink); font-weight: 600; }
+  .mindset {
+    margin-top: 20px; padding: 20px 24px; border-radius: var(--radius);
+    background: linear-gradient(180deg, var(--accent-soft), #f2f6ff); border: 1px solid #d9e5fb;
+    color: var(--ink); font-size: 15px; line-height: 1.75;
+  }
+  .mindset .lbl { display: block; font-family: var(--font-mono); font-size: 11.5px; font-weight: 600; color: var(--accent-deep); letter-spacing: 0.08em; margin-bottom: 6px; }
+
+  /* 联系方式 */
+  .contact { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 14px; }
+  .cc {
+    display: flex; align-items: center; gap: 13px;
+    background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 16px 18px;
+    transition: border-color .15s ease, box-shadow .15s ease;
+  }
+  .cc:hover { border-color: var(--accent); box-shadow: 0 10px 26px -20px rgba(37,99,235,.5); }
+  .cc .ic { flex: none; width: 40px; height: 40px; border-radius: 10px; display: grid; place-items: center; background: var(--accent-soft); color: var(--accent); }
+  .cc .ic svg { width: 19px; height: 19px; }
+  .cc .txt { min-width: 0; }
+  .cc .k { font-family: var(--font-mono); font-size: 11px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+  .cc .v { font-size: 14.5px; font-weight: 500; color: var(--ink); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .copy-btn {
+    margin-left: auto; flex: none; cursor: pointer; border: 1px solid var(--line); background: var(--field);
+    color: var(--muted); border-radius: var(--radius-sm); width: 32px; height: 32px; display: grid; place-items: center;
+    transition: color .15s ease, border-color .15s ease;
+  }
+  .copy-btn:hover { color: var(--accent); border-color: var(--accent); }
+  .copy-btn svg { width: 15px; height: 15px; }
+
+  .closing { text-align: center; padding: 8px 0 56px; color: var(--muted); font-size: 15px; }
+  .closing b { color: var(--accent); font-weight: 600; }
+
+  footer { border-top: 1px solid var(--line); }
+  .footer-inner {
+    max-width: var(--maxw); margin: 0 auto; padding: 24px 28px 40px;
+    display: flex; flex-wrap: wrap; gap: 8px; justify-content: space-between;
+    font-family: var(--font-mono); font-size: 12.5px; color: var(--muted);
+  }
+
+  .reveal { opacity: 0; transform: translateY(16px); transition: opacity .55s ease, transform .55s ease; }
+  .reveal.in { opacity: 1; transform: none; }
+
+  .toast {
+    position: fixed; left: 50%; bottom: 28px; transform: translateX(-50%) translateY(16px);
+    background: var(--ink); color: var(--surface); font-weight: 600; font-size: 14px;
+    padding: 10px 18px; border-radius: var(--radius); box-shadow: 0 8px 24px rgba(14,17,22,.22);
+    opacity: 0; pointer-events: none; transition: opacity .2s ease, transform .2s ease; z-index: 90;
+  }
+  .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+  @media (max-width: 900px) {
+    section.sec { grid-template-columns: 1fr; gap: 20px; padding: 40px 0; }
+    .sec .rail { position: static; }
+    .projects, .contact { grid-template-columns: 1fr; }
+    .facts { grid-template-columns: 1fr; }
+    .fact + .fact { border-left: none; border-top: 1px solid var(--line); }
+    .nav-links { display: none; }
+    .hero { padding: 52px 0 40px; }
+  }
+  @media (max-width: 560px) {
+    .wrap, .nav-inner, .footer-inner { padding-left: 20px; padding-right: 20px; }
+    .stack-row { grid-template-columns: 1fr; gap: 4px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-inner">
+    <span class="brand"><span class="mark">LYY</span>刘毅杨 · Hackathon 2026</span>
+    <nav class="nav-links">
+      <a href="#about">关于我</a>
+      <a href="#stack">技术栈</a>
+      <a href="#projects">项目</a>
+      <a href="#goals">参赛目标</a>
+      <a href="#contact">找到我</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="topline reveal">Hackathon Profile · 2026</div>
+    <h1 class="reveal">刘毅杨<span class="dot">.</span></h1>
+    <div class="sub reveal">
+      <span>软件工程 · 大三在读</span>
+      <span class="sep">/</span>
+      <span>Python 后端方向</span>
+      <span class="sep">/</span>
+      <span>第一次参加黑客松</span>
+    </div>
+    <p class="lede reveal">你好，我是刘毅杨，一名软件工程专业的大三学生，<strong>主力语言是 Python</strong>。我喜欢用代码把「想法」变成「能跑起来的东西」——从第一次让一个接口真正返回数据开始，我就迷上了这种把逻辑串成闭环的感觉。这是我第一次参加黑客松，报名的是<em>「AI 游戏与交互世界」</em>赛道，我希望和队友一起，在 48 小时里做出一个真正能玩、能交互的作品，也在实战中精益求精、补上自己知识上的短板。</p>
+    <div class="facts reveal">
+      <div class="fact"><div class="k">Track</div><div class="v accent">AI 游戏与交互世界</div></div>
+      <div class="fact"><div class="k">Primary Language</div><div class="v">Python</div></div>
+      <div class="fact"><div class="k">Hackathon Experience</div><div class="v">首次参赛</div></div>
+    </div>
+  </div>
+
+  <!-- ABOUT -->
+  <section class="sec" id="about">
+    <div class="rail reveal">
+      <span class="num">01</span>
+      <h2>关于我</h2>
+      <span class="hint">/ about</span>
+    </div>
+    <div class="body reveal">
+      <p>现就读于软件工程专业大三，方向是后端开发。我的编程入门并不算早，是靠一门门课程和一页页文档慢慢啃下来的。比起「背知识点」，我更习惯用项目来学：想清楚要解决什么问题，然后倒推出需要学什么技术，边做边补。这个过程虽然慢，但学得扎实。</p>
+      <p>目前我已经系统学习了 Java、MyBatis、Spring Boot、Maven，也熟练使用 Python，能够独立完成一个后端服务的搭建与调试。</p>
+      <p>作为第一次参赛的学生，我很清楚自己还有很多不足。但我相信<strong>愿意钻研、肯花时间的态度</strong>，同样能在团队里发挥作用。这次黑客松我最看重的是过程：在有限的时间里快速学习、和队友配合、把想法落地——这些经历比名次更珍贵。</p>
+    </div>
+  </section>
+
+  <!-- STACK -->
+  <section class="sec" id="stack">
+    <div class="rail reveal">
+      <span class="num">02</span>
+      <h2>技术栈</h2>
+      <span class="hint">/ tech stack</span>
+    </div>
+    <div class="body reveal">
+      <div class="stack">
+        <div class="stack-row">
+          <span class="k">编程语言</span>
+          <span class="v"><span class="hot">Python（主力）</span><span class="sep">·</span>Java</span>
+        </div>
+        <div class="stack-row">
+          <span class="k">后端框架</span>
+          <span class="v">FastAPI<span class="sep">·</span>Flask<span class="sep">·</span>Spring Boot<span class="sep">·</span>MyBatis</span>
+        </div>
+        <div class="stack-row">
+          <span class="k">构建与工具</span>
+          <span class="v">pip / venv<span class="sep">·</span>Maven<span class="sep">·</span>Git</span>
+        </div>
+        <div class="stack-row">
+          <span class="k">数据库</span>
+          <span class="v">MySQL（熟悉增删改查与基本表设计）</span>
+        </div>
+        <div class="stack-row">
+          <span class="k">方向与实践</span>
+          <span class="v">RESTful 接口设计<span class="sep">·</span>Python 脚本与数据处理<span class="sep">·</span>游戏 / 交互逻辑</span>
+        </div>
+        <div class="stack-row">
+          <span class="k">正在学习</span>
+          <span class="v">AI 接口调用与集成<span class="sep">·</span>Redis 缓存<span class="sep">·</span>Linux 基础操作<span class="sep">·</span>基础算法与数据结构</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section class="sec" id="projects">
+    <div class="rail reveal">
+      <span class="num">03</span>
+      <h2>我做过的小项目</h2>
+      <span class="hint">/ projects</span>
+    </div>
+    <div class="body reveal">
+      <div class="projects">
+        <article class="proj">
+          <div class="top">
+            <span class="idx">01</span>
+            <span class="stack-tag">Python · FastAPI</span>
+          </div>
+          <h3>在线答题小游戏后端</h3>
+          <p>个人兴趣项目。用 Python + FastAPI 搭建答题游戏的服务端，实现题库管理、答题计分与排行榜逻辑，通过接口把题目实时下发给前端，是我第一次把「游戏」和「后端」连起来。</p>
+        </article>
+        <article class="proj">
+          <div class="top">
+            <span class="idx">02</span>
+            <span class="stack-tag">Python · pygame</span>
+          </div>
+          <h3>推箱子 / 打砖块小游戏</h3>
+          <p>入门练手作品。用 pygame 实现推箱子与打砖块玩法，完成游戏主循环、碰撞检测、关卡与计分逻辑，让我直观理解了游戏状态是如何在每一帧里被更新的。</p>
+        </article>
+        <article class="proj">
+          <div class="top">
+            <span class="idx">03</span>
+            <span class="stack-tag">Spring Boot · MyBatis</span>
+          </div>
+          <h3>学生选课管理系统</h3>
+          <p>课程设计作品。实现课程发布、学生选课、退课与名额校验等后端功能，用 MyBatis 完成数据持久化，帮助我系统掌握了后端分层结构与事务处理。</p>
+        </article>
+        <article class="proj">
+          <div class="top">
+            <span class="idx">04</span>
+            <span class="stack-tag">Python</span>
+          </div>
+          <h3>课程资料自动归档脚本</h3>
+          <p>为方便自己而写的小工具。用 Python 按课程、类型自动归档下载的资料并生成目录清单，省去手动整理的时间，是我理解文件操作与自动化思路的起点。</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- GOALS -->
+  <section class="sec" id="goals">
+    <div class="rail reveal">
+      <span class="num">04</span>
+      <h2>本届黑客松：我的目标</h2>
+      <span class="hint">/ goals</span>
+    </div>
+    <div class="body reveal">
+      <p style="margin-bottom:20px">这是我第一次参加黑客松，报名赛道是「AI 游戏与交互世界」。比起名次，我更在意能在这 48 小时里收获什么。我希望参与一个真正可玩、可交互的项目，把主力语言 Python 用到游戏逻辑、AI 行为或交互后端上，让代码驱动的世界真正转起来。</p>
+      <div class="goals">
+        <div class="goal"><span class="no">01</span><p><b>把课堂和自学的内容真正落地一次：</b>用 Python 搭建一个可运行的游戏 / 交互服务后端，打通从数据到接口再到交互的完整链路。</p></div>
+        <div class="goal"><span class="no">02</span><p><b>围绕「AI 游戏与交互世界」做出可玩的成果：</b>让 AI 行为、剧情分支或玩家交互真正跑起来，而不是停留在静态 demo。</p></div>
+        <div class="goal"><span class="no">03</span><p><b>在实战中精益求精、完善技能：</b>走出「跟着教程写」的舒适区，在实际需求里查漏补缺，把 Python 与工程能力打得更扎实。</p></div>
+        <div class="goal"><span class="no">04</span><p><b>提升知识与协作能力：</b>向队友和前辈学习工程规范、代码组织与协作方式，拓展自己在游戏与 AI 方向的技术视野。</p></div>
+        <div class="goal"><span class="no">05</span><p><b>全力以赴完成一件能拿得出手的作品，</b>为第一次黑客松留下一个真实的成果。</p></div>
+      </div>
+      <div class="mindset">
+        <span class="lbl">MINDSET</span>
+        我的心态：不追求一次就做出多厉害的东西，只求在过程中全力以赴、精益求精，让自己在技术、经验和眼界上都实实在在往前走一步。
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="sec" id="contact" style="border-bottom:1px solid var(--line)">
+    <div class="rail reveal">
+      <span class="num">05</span>
+      <h2>找到我</h2>
+      <span class="hint">/ contact</span>
+    </div>
+    <div class="body reveal">
+      <div class="contact">
+        <div class="cc">
+          <span class="ic">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 7 10-7"/></svg>
+          </span>
+          <span class="txt"><span class="k">邮箱</span><span class="v">3357192275@qq.com</span></span>
+          <button class="copy-btn" data-copy="3357192275@qq.com" aria-label="复制邮箱" title="复制邮箱">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+          </button>
+        </div>
+        <div class="cc">
+          <span class="ic">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          </span>
+          <span class="txt"><span class="k">微信</span><span class="v">CT-SDJ</span></span>
+          <button class="copy-btn" data-copy="CT-SDJ" aria-label="复制微信" title="复制微信号">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <p class="closing reveal">代码还在慢慢积累，欢迎来聊——期待在这次黑客松里，遇见愿意一起把想法做出来的人。</p>
+
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <span>刘毅杨 · 黑客松个人主页简介</span>
+    <span>AI 游戏与交互世界 · 2026</span>
+  </div>
+</footer>
+
+<div class="toast" id="toast">已复制到剪贴板</div>
+
+<script>
+  (function () {
+    var reveals = document.querySelectorAll(".reveal");
+    if ("IntersectionObserver" in window) {
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (en) {
+          if (en.isIntersecting) { en.target.classList.add("in"); io.unobserve(en.target); }
+        });
+      }, { threshold: 0.1, rootMargin: "0px 0px -8% 0px" });
+      reveals.forEach(function (el) { io.observe(el); });
+    } else {
+      reveals.forEach(function (el) { el.classList.add("in"); });
+    }
+
+    var toast = document.getElementById("toast");
+    function showToast(msg) {
+      if (!toast) return;
+      toast.textContent = msg; toast.classList.add("show");
+      setTimeout(function () { toast.classList.remove("show"); }, 1800);
+    }
+    function fallback(text, cb) {
+      try {
+        var ta = document.createElement("textarea");
+        ta.value = text; ta.setAttribute("readonly", ""); ta.style.position = "absolute"; ta.style.left = "-9999px";
+        document.body.appendChild(ta); ta.select(); document.execCommand("copy"); document.body.removeChild(ta); cb();
+      } catch (e) { showToast("复制失败，请手动复制"); }
+    }
+    document.querySelectorAll(".copy-btn").forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        var text = btn.getAttribute("data-copy") || "";
+        function done() { showToast("已复制：" + text); }
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(text).then(done).catch(function () { fallback(text, done); });
+        } else { fallback(text, done); }
+      });
+    });
+  })();
+</script>
+</body>
+</html>
